@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  ts-node-docker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./src:/home/node/app/src
+    container_name: dnpl-demo-backend
+    expose:
+      - '9000'
+    ports:
+      - '9000:9000'
+    command: npm start

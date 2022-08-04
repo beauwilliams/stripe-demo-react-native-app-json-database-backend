@@ -46,6 +46,10 @@ install *PACKAGES:
     @npm install {{PACKAGES}}
 start:
     npm start
+build:
+    docker compose build
+run:
+    docker compose up
 
 
 # Hidden Recipes

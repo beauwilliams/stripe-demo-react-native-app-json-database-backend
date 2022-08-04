@@ -2,7 +2,7 @@ import http, { IncomingMessage, ServerResponse } from "http";
 import { getTransactions, addTransaction, updateTransaction, deleteTransaction } from "./controllers/Transaction";
 import {getPublishableKey} from "./controllers/Keys";
 
-const host = "localhost";
+const host = "0.0.0.0";
 const port = 9000;
 
 const dnplDemoBackend = http.createServer((req, res) => {
