@@ -1,4 +1,3 @@
-
 interface PublishableKey {
   key: string;
 }

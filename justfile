@@ -45,11 +45,13 @@ install *PACKAGES:
     @#Recipe param as list of packages
     @npm install {{PACKAGES}}
 start:
-    npm start
+    npm run start
 build:
     docker compose build
 run:
     docker compose up
+format:
+    npm run format
 
 
 # Hidden Recipes
