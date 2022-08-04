@@ -1,0 +1,26 @@
+[
+   {
+     "id": 1,
+    "payer": "Bob",
+    "payee": "Alice",
+    "amount": 2000
+   },
+   {
+     "id": 2,
+    "payer": "Jane",
+    "payee": "Doe",
+    "amount": 2001
+   },
+   {
+     "id": 3,
+    "payer": "Bob",
+    "payee": "Alice",
+    "amount": 300
+   },
+   {
+     "id": 4,
+    "payer": "Bob",
+    "payee": "Alice",
+    "amount": 5000
+   }
+]
