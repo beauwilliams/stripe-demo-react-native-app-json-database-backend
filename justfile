@@ -45,7 +45,8 @@ install *PACKAGES:
     @#Recipe param as list of packages
     @npm install {{PACKAGES}}
 start:
-    npm run start
+ just build
+ just run
 build:
     docker compose build
 run:
