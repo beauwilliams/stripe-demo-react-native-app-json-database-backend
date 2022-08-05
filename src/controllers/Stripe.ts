@@ -21,7 +21,7 @@ export const createPaymentIntent = async (
       amount: 4242,
       currency: "aud",
       transfer_data: {
-        destination: "{{CONNECTED_ACCOUNT_ID}}",
+        destination: "acct_1LTRLjPqJmXKUUAh",
       },
     })
     .then((paymentIntent) => {
@@ -41,7 +41,15 @@ export const createConnectedAccount = async (
   res: ServerResponse
 ) => {
   const account = await stripe.accounts
-    .create({ type: "express" })
+    .create({
+      type: "custom",
+      country: "AU",
+      email: "dnpl@demo.com",
+      capabilities: {
+        card_payments: { requested: true },
+        transfers: { requested: true },
+      },
+    })
     .then(async (account) => {
       const accountLink = await stripe.accountLinks
         .create({
