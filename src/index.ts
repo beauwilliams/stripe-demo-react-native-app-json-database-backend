@@ -6,7 +6,7 @@ import {
   deleteTransaction,
 } from "./controllers/Transaction";
 import { getPublishableKey } from "./controllers/Keys";
-import { createPaymentIntent } from "./controllers/Stripe";
+import { createPaymentIntent, createConnectedAccount } from "./controllers/Stripe";
 
 const host = "0.0.0.0";
 const port = 9000;
@@ -34,6 +34,10 @@ const dnplDemoBackend = http.createServer(async (req, res) => {
 
   if (req.method == "GET" && req.url == "/api/publishable-key") {
     return getPublishableKey(req, res);
+  }
+
+  if (req.method == "GET" && req.url == "/api/create-connected-account") {
+    return createConnectedAccount(req, res);
   }
 
   index(res);
