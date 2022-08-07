@@ -91,6 +91,40 @@ const addTransaction = (req: IncomingMessage, res: ServerResponse) => {
   });
 };
 
+const writeTransaction = (transaction: Transaction) => {
+  fs.readFile(
+    path.join(__dirname, "../data/transaction-list.json"),
+    "utf8",
+    (err, data) => {
+      if (err) {
+        console.log(err);
+        return false;
+      } else {
+        let transactions: [Transaction] = JSON.parse(data);
+        let latest_id = transactions.reduce(
+          (max = 0, transaction: Transaction) =>
+            transaction.id > max ? transaction.id : max,
+          0
+        );
+        transaction.id = latest_id + 1;
+        transactions.push(transaction);
+        fs.writeFile(
+          path.join(__dirname, "../data/transaction-list.json"),
+          JSON.stringify(transactions),
+          (err) => {
+            if (err) {
+              console.log(err);
+              return false;
+            } else {
+              return true;
+            }
+          }
+        );
+      }
+    }
+  );
+};
+
 const updateTransaction = (req: IncomingMessage, res: ServerResponse) => {
   let data = "";
   req.on("data", (chunk) => {
@@ -198,6 +232,7 @@ const deleteTransaction = (req: IncomingMessage, res: ServerResponse) => {
 export {
   getTransactions,
   addTransaction,
+  writeTransaction,
   updateTransaction,
   deleteTransaction,
 };

@@ -3,6 +3,8 @@ import Stripe from "stripe";
 import fs from "fs";
 import path from "path";
 import { ConnectedAccount } from "../interfaces/IConnectedAccount";
+import {writeTransaction} from "../controllers/Transaction";
+import { Transaction } from "../interfaces/ITransaction";
 
 require("dotenv").config();
 
@@ -25,6 +27,18 @@ export const createPaymentIntent = async (
       },
     })
     .then((paymentIntent) => {
+      let new_transaction: Transaction = {
+        //TODO: fix this jank. Using let and mutating in lower fn.
+        id: 0,
+        //TODO: Redesign demo to use transaction_id instead of intent id.
+        transaction_id: paymentIntent.id,
+        created_at: paymentIntent.created,
+        paid_to: paymentIntent.transfer_data?.destination.toString() || "",
+        amount: paymentIntent.amount,
+        currency: "aud",
+        payment_method: paymentIntent.payment_method?.toString() || "",
+      };
+      writeTransaction(new_transaction);
       res.end(
         JSON.stringify({
           clientSecret: paymentIntent.client_secret,
