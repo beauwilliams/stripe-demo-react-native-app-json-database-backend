@@ -1,5 +1,7 @@
 # Demo stripe payments flow react native app backend
 
+[Video demo here](https://youtu.be/rdka42Xe15k)
+
 ## Features
 
 - Runs in container (docker)
